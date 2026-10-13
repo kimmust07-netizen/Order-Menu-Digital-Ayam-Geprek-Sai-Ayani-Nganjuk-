@@ -67,19 +67,20 @@
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-saiRed selection:text-white">
 
+    <!-- HEADER / NAVIGATION -->
     <header class="bg-gradient-to-r from-saiRed via-red-600 to-saiRedDark text-white shadow-md sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
-                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center p-1 shadow-md flex-shrink-0">
-                    <svg viewBox="0 0 200 200" class="w-full h-full">
-                        <circle cx="100" cy="100" r="95" fill="#ffffff" stroke="#D32F2F" stroke-width="4"/>
-                        <circle cx="100" cy="85" r="65" fill="#D32F2F"/>
-                        <path d="M100 30 Q115 50 105 65 Q125 45 120 75 Q135 60 125 85 Q110 105 85 100 Q70 95 75 75 Q65 85 70 60 Q80 70 85 50 Q90 35 100 30 Z" fill="#FBC02D"/>
-                        <path d="M110 35 Q118 25 125 35 Q120 45 110 35 Z" fill="#D32F2F"/>
-                        <rect x="30" y="120" width="140" height="36" rx="18" fill="#2E7D32"/>
-                        <text x="100" y="145" font-family="'Poppins', sans-serif" font-weight="bold" font-size="22" fill="#ffffff" text-anchor="middle">Sa'i</text>
-                    </svg>
+                
+                <!-- ================================================================= -->
+                <!-- titik ganti logo -->
+                <!-- ================================================================= -->
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center overflow-hidden p-0.5 shadow-md flex-shrink-0 border-2 border-saiYellow">
+                    <!-- ganti logo -->
+                    <img id="appHeaderLogo" src="logo sa'i.png" alt="Logo Ayam Geprek Sa'i" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\"fas fa-utensils text-saiRed text-xl\"></i>';">
                 </div>
+                <!-- ================================================================= -->
+
                 <div>
                     <div class="flex items-center space-x-2">
                         <h1 class="text-base sm:text-lg md:text-xl font-black tracking-wide leading-tight">AYAM GEPREK SA'I</h1>
@@ -98,11 +99,13 @@
 
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
         
+        <!-- TOAST NOTIFICATION -->
         <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 pointer-events-none">
             <i id="toastIcon" class="fas fa-check-circle text-emerald-400 text-xl"></i>
             <span id="toastMsg" class="text-xs sm:text-sm font-medium">Notifikasi</span>
         </div>
 
+        <!-- HOME VIEW (2 UTAMA TOMBOL) -->
         <section id="viewHome" class="space-y-8 py-6">
             <div class="text-center max-w-2xl mx-auto space-y-3">
                 <span class="bg-red-100 text-saiRed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Aplikasi Kasir & Ordering System</span>
@@ -111,7 +114,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto pt-2">
-                <!-- Admin Button -->
+                <!-- Tombol Admin -->
                 <div onclick="navigateTo('admin')" class="group bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-2xl border-2 border-transparent hover:border-saiRed transition-all duration-300 cursor-pointer flex flex-col justify-between relative overflow-hidden">
                     <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-red-50 rounded-full group-hover:scale-125 transition-transform duration-500 z-0"></div>
                     <div class="relative z-10 space-y-4">
@@ -129,7 +132,7 @@
                     </div>
                 </div>
 
-                <!-- Customer Order Button -->
+                <!-- Tombol Barcode Meja -->
                 <div onclick="navigateTo('customer')" class="group bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-2xl border-2 border-transparent hover:border-saiGreen transition-all duration-300 cursor-pointer flex flex-col justify-between relative overflow-hidden">
                     <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-emerald-50 rounded-full group-hover:scale-125 transition-transform duration-500 z-0"></div>
                     <div class="relative z-10 space-y-4">
@@ -156,8 +159,8 @@
             </div>
         </section>
 
+        <!-- ADMIN PANEL VIEW -->
         <section id="viewAdmin" class="hidden space-y-6">
-            <!-- Top Admin Header -->
             <div class="bg-white rounded-2xl p-4 md:p-6 shadow-sm border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-xl bg-red-100 text-saiRed flex items-center justify-center font-bold">
@@ -172,7 +175,6 @@
                     </div>
                 </div>
 
-                <!-- Admin Tabs -->
                 <div class="flex bg-slate-100 p-1 rounded-xl text-xs font-medium self-start md:self-auto">
                     <button onclick="switchAdminTab('orders')" id="tabBtnOrders" class="px-3.5 py-2 rounded-lg bg-white shadow text-saiRed font-bold transition">
                         <i class="fas fa-list-alt mr-1"></i> Daftar Transaksi
@@ -188,7 +190,6 @@
 
             <!-- ADMIN TAB 1: DAFTAR TRANSAKSI -->
             <div id="adminTabOrders" class="space-y-4">
-                <!-- Summary Stats -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex items-center justify-between">
                         <div>
@@ -219,7 +220,6 @@
                     </div>
                 </div>
 
-                <!-- Order List Table -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                     <div class="p-4 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row justify-between gap-3">
                         <div class="relative flex-1">
@@ -259,17 +259,11 @@
 
             <!-- ADMIN TAB 2: INPUT PEMESANAN KASIR (POS) -->
             <div id="adminTabPos" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Catalog Section -->
                 <div class="lg:col-span-2 space-y-4">
-                    <div class="flex space-x-2 overflow-x-auto custom-scroll pb-1" id="posCategoryContainer">
-                        <!-- Categories dynamically generated -->
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4" id="posMenuGrid">
-                        <!-- Menu items dynamically generated -->
-                    </div>
+                    <div class="flex space-x-2 overflow-x-auto custom-scroll pb-1" id="posCategoryContainer"></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4" id="posMenuGrid"></div>
                 </div>
 
-                <!-- POS Cart Side Panel -->
                 <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-col h-fit sticky top-20">
                     <h3 class="font-bold text-slate-800 text-sm border-b pb-2 mb-3 flex justify-between items-center">
                         <span>Pemesanan Kasir Direct</span>
@@ -296,7 +290,6 @@
                         </div>
                     </div>
 
-                    <!-- Cart List -->
                     <div id="posCartList" class="max-h-52 overflow-y-auto custom-scroll space-y-2 my-1 divide-y divide-slate-100">
                         <p class="text-center text-xs text-slate-400 py-6">Belum ada item dipilih</p>
                     </div>
@@ -374,8 +367,8 @@
             </div>
         </section>
 
+        <!-- CUSTOMER PEMESANAN BARCODE VIEW -->
         <section id="viewCustomer" class="hidden space-y-6 max-w-4xl mx-auto">
-            <!-- Order Steps Progress Bar -->
             <div class="bg-white p-3.5 rounded-2xl shadow-sm border border-slate-200 flex justify-around text-center text-xs font-bold">
                 <div id="custStepTab1" class="flex items-center space-x-2 text-saiRed">
                     <span class="w-6 h-6 rounded-full bg-saiRed text-white flex items-center justify-center text-xs">1</span>
@@ -393,7 +386,7 @@
                 </div>
             </div>
 
-            <!-- STEP 1: CUSTOMER REGISTRATION FORM -->
+            <!-- STEP 1: FORM -->
             <div id="custStep1" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 max-w-lg mx-auto space-y-4">
                 <div class="text-center space-y-1">
                     <h3 class="text-xl font-bold text-slate-800">Isi Data Pemesan</h3>
@@ -434,9 +427,8 @@
                 </form>
             </div>
 
-            <!-- STEP 2: CATALOG MENU -->
+            <!-- STEP 2: KATALOG -->
             <div id="custStep2" class="hidden space-y-6">
-                <!-- Customer banner -->
                 <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl flex items-center justify-between text-xs text-amber-900">
                     <div>
                         Pemesan: <strong id="custInfoDisplayName">-</strong> (<span id="custInfoDisplayTable">-</span>)
@@ -444,17 +436,9 @@
                     <button onclick="goToCustStep(1)" class="text-saiRed hover:underline font-bold text-xs">Ubah Data</button>
                 </div>
 
-                <!-- Categories Container -->
-                <div class="flex space-x-2 overflow-x-auto custom-scroll pb-1" id="custCategoryContainer">
-                    <!-- Dynamic -->
-                </div>
+                <div class="flex space-x-2 overflow-x-auto custom-scroll pb-1" id="custCategoryContainer"></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="custMenuGrid"></div>
 
-                <!-- Menu Cards Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="custMenuGrid">
-                    <!-- Dynamic -->
-                </div>
-
-                <!-- Floating Bottom Cart Bar -->
                 <div class="fixed bottom-4 left-4 right-4 max-w-2xl mx-auto bg-slate-900/95 backdrop-blur-md text-white p-4 rounded-2xl shadow-2xl flex items-center justify-between z-30 border border-slate-700">
                     <div>
                         <p class="text-[10px] text-slate-300 uppercase font-semibold"><span id="custCartTotalItems">0</span> Item Terpilih</p>
@@ -467,7 +451,7 @@
                 </div>
             </div>
 
-            <!-- STEP 3: CHECKOUT & PAYMENT -->
+            <!-- STEP 3: METODE PEMBAYARAN -->
             <div id="custStep3" class="hidden space-y-6 pb-20">
                 <button onclick="goToCustStep(2)" class="text-xs text-slate-600 hover:text-saiRed font-semibold flex items-center space-x-1">
                     <i class="fas fa-arrow-left"></i>
@@ -475,12 +459,9 @@
                 </button>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Item List Review -->
                     <div class="md:col-span-2 bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
                         <h3 class="font-bold text-slate-800 text-sm border-b pb-2">Rincian Pesanan Menu</h3>
-                        <div id="custReviewItemsList" class="divide-y divide-slate-100 max-h-80 overflow-y-auto custom-scroll">
-                            <!-- Dynamic -->
-                        </div>
+                        <div id="custReviewItemsList" class="divide-y divide-slate-100 max-h-80 overflow-y-auto custom-scroll"></div>
                         <div class="border-t pt-3 space-y-1.5 text-xs">
                             <div class="flex justify-between text-slate-600">
                                 <span>Total Item</span>
@@ -493,7 +474,6 @@
                         </div>
                     </div>
 
-                    <!-- Payment Selector -->
                     <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4 h-fit">
                         <h3 class="font-bold text-slate-800 text-sm border-b pb-2">Metode Pembayaran</h3>
                         
@@ -523,10 +503,7 @@
                             </label>
                         </div>
 
-                        <!-- Dynamic Instructions Box -->
-                        <div id="custPaymentInfoBox" class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-center space-y-2">
-                            <!-- Dynamic Content -->
-                        </div>
+                        <div id="custPaymentInfoBox" class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-center space-y-2"></div>
 
                         <button onclick="submitCustomerFinalOrder()" class="w-full bg-saiRed hover:bg-saiRedDark text-white py-3.5 rounded-xl font-extrabold text-xs sm:text-sm shadow-lg transition-all flex items-center justify-center space-x-2">
                             <i class="fas fa-paper-plane"></i>
@@ -539,6 +516,7 @@
 
     </main>
 
+    <!-- STRUK DIGITAL MODAL -->
     <div id="receiptModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative my-8 space-y-4">
             
@@ -546,9 +524,19 @@
                 <i class="fas fa-times"></i>
             </button>
 
-            <!-- PRINTABLE RECEIPT CONTENT -->
+            <!-- PRINTABLE RECEIPT -->
             <div id="printableReceipt" class="space-y-4 text-xs font-mono">
                 <div class="text-center space-y-1 border-b border-dashed border-slate-300 pb-3">
+
+                    <!-- ================================================================= -->
+                    <!-- titik ganti logo untuk struk digital -->
+                    <!-- ================================================================= -->
+                    <div class="w-12 h-12 bg-white rounded-full mx-auto flex items-center justify-center overflow-hidden p-0.5 border border-slate-200 mb-1">
+                        <!-- ganti logo -->
+                        <img src="logo sa'i.jpg" alt="Logo Ayam Geprek Sa'i" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.style.display='none';">
+                    </div>
+                    <!-- ================================================================= -->
+
                     <h2 class="text-base font-extrabold font-sans text-saiRed tracking-wide">AYAM GEPREK SA'I</h2>
                     <p class="font-sans text-[11px] font-semibold text-slate-700">A Yani Nganjuk</p>
                     <p class="text-[10px] text-slate-500">Jl. A Yani No. 123, Nganjuk, Jawa Timur</p>
@@ -578,10 +566,7 @@
                     </div>
                 </div>
 
-                <!-- Items list -->
-                <div class="space-y-2 border-b border-dashed border-slate-300 pb-3" id="recItemsList">
-                    <!-- Dynamic Items -->
-                </div>
+                <div class="space-y-2 border-b border-dashed border-slate-300 pb-3" id="recItemsList"></div>
 
                 <div class="space-y-1 text-xs pt-1">
                     <div class="flex justify-between text-sm font-bold pt-1">
@@ -604,7 +589,6 @@
                 </div>
             </div>
 
-            <!-- Modal Action Buttons -->
             <div class="no-print pt-2 space-y-2">
                 <button onclick="window.print()" class="w-full bg-slate-800 hover:bg-slate-900 text-white py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2">
                     <i class="fas fa-print"></i>
@@ -618,7 +602,6 @@
     </div>
 
     <script>
-        // MASTER DEFAULT SETTINGS
         const DEFAULT_SETTINGS = {
             bankName: "Bank BCA",
             bankAccount: "123-456-7890",
@@ -626,7 +609,6 @@
             qrisUrl: "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=AYAM_GEPREK_SAI_AYANI_NGANJUK_QRIS_OFFICIAL"
         };
 
-        // AYAM GEPREK SA'I MENU DATA
         const MENU_DATA = [
             { id: 1, name: "Ayam Geprek Sambal Bawang", category: "Geprek", price: 16000, desc: "Nasi + Ayam Geprek Crispy Sambal Bawang Pedas Mantap", img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&q=80" },
             { id: 2, name: "Ayam Geprek Keju Parut", category: "Geprek", price: 19000, desc: "Nasi + Ayam Geprek Sambal + Parutan Keju Cheddar Melimpah", img: "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80" },
@@ -638,7 +620,6 @@
             { id: 8, name: "Tahu & Tempe Crispy (4 pcs)", category: "Extra", price: 5000, desc: "2 Tahu & 2 Tempe Goreng Tepung Crispy Bumbu Sa'i", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80" }
         ];
 
-        // INITIAL DEMO ORDERS
         const INITIAL_ORDERS = [
             {
                 id: "ORD-1001",
@@ -665,24 +646,20 @@
             }
         ];
 
-        // GLOBAL APPLICATION STATE
         let state = {
             currentView: 'home',
             settings: JSON.parse(localStorage.getItem('sai_settings')) || DEFAULT_SETTINGS,
             orders: JSON.parse(localStorage.getItem('sai_orders')) || INITIAL_ORDERS,
             cashierName: localStorage.getItem('sai_cashier_name') || "Budi - Kasir 01",
             
-            // Customer active state
             customerData: { name: '', email: '', phone: '', table: '' },
             customerCart: [],
             activeCustCategory: 'Semua',
 
-            // POS active state
             posCart: [],
             activePosCategory: 'Semua'
         };
 
-        // SAVE STATE HELPERS
         function saveOrders() {
             localStorage.setItem('sai_orders', JSON.stringify(state.orders));
         }
@@ -691,7 +668,6 @@
             localStorage.setItem('sai_settings', JSON.stringify(state.settings));
         }
 
-        // INITIALIZATION ON LOAD
         window.onload = function() {
             document.getElementById('adminCashierNameInput').value = state.cashierName;
             initSettingsForm();
@@ -703,7 +679,6 @@
             updatePosCartUI();
         };
 
-        // NAVIGATION CONTROLLER
         function navigateTo(viewName) {
             state.currentView = viewName;
             
@@ -1207,7 +1182,6 @@
             openReceiptModal(newOrder.id);
         }
 
-        // DIGITAL RECEIPT MODAL FUNCTIONS
         function openReceiptModal(orderId) {
             const order = state.orders.find(o => o.id === orderId);
             if (!order) return;
